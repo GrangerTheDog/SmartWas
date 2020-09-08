@@ -18,6 +18,7 @@ timer = 0
 
 
 bot.send_message(telegramid, "Wasmachine staat aan")
+timelimit = timelimit * 10
 while True:
     gyro_only = sense.get_gyroscope()
     #Berekent het gemiddelde van de vorige values en de huidige values
@@ -51,4 +52,4 @@ while True:
         print("Is moving reseting timer!")
         sense.clear(255, 0 ,0) 
         timer = 0
-    sleep(1)
+    sleep(0.1)
