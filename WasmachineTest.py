@@ -3,7 +3,7 @@ from sense_hat import SenseHat
 from time import sleep
 import telebot
 from telebot import types
-bot = telebot.TeleBot("1300564024:AAGfIIywVz0d06CxCLvJ6ABP7xKhI7Rt7ek", parse_mode=None)
+bot = telebot.TeleBot("XXXXXXTOKEN", parse_mode=None)
 
 sense = SenseHat()
 # CONFIG
