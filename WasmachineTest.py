@@ -7,7 +7,7 @@ bot = telebot.TeleBot("XXXXXXTOKEN", parse_mode=None)
 
 sense = SenseHat()
 # CONFIG
-timelimit = 10  # 3 minuten
+timelimit = 180  # 3 minuten
 telegramid = 447307637
 
 # Global Vars
@@ -43,8 +43,7 @@ def startWas():
             # print(dy)
             if sw_status is False:
                 print("Wasmachine Detectie uitgeschakeld")
-                bot.send_message(
-                    telegramid, "Wasmachine Detectie uitgeschakeld")
+                bot.send_message(telegramid, "Wasmachine Detectie uitgeschakeld")
                 break
 
             # Als de timer de ingestelde seconden heeft bewaart, stuur een berichtje naar telegram en zet de RGB naar groen
@@ -56,8 +55,7 @@ def startWas():
                 itembtn3 = types.KeyboardButton('Herstart SmartWas')
                 markup.add(itembtn2, itembtn3, itembtn1)
 
-                bot.send_message(
-                    telegramid, "Wasmachine is klaar", reply_markup=markup)
+                bot.send_message(telegramid, "Wasmachine is klaar", reply_markup=markup)
                 sense.clear(0, 255, 0)
                 timer = 0
                 sw_status = False
@@ -98,13 +96,11 @@ def echo_all(message):
                 itembtn2 = types.KeyboardButton('Instructies')
                 itembtn3 = types.KeyboardButton('Herstart SmartWas')
                 markup.add(itembtn2, itembtn3, itembtn1)
-                bot.send_message(
-                    message.chat.id, "SmartWas is gestart!", reply_markup=markup)
+                bot.send_message(message.chat.id, "SmartWas is gestart!", reply_markup=markup)
                 startWas()
 
             else:
-                bot.send_message(
-                    message.chat.id, "SmartWas staat al aan", reply_markup=markup)
+                bot.send_message(message.chat.id, "SmartWas staat al aan", reply_markup=markup)
         elif "Stop SmartWas" in message.text:
             if sw_status is True:
                 markup = types.ReplyKeyboardMarkup(row_width=2)
@@ -112,28 +108,22 @@ def echo_all(message):
                 itembtn2 = types.KeyboardButton('Instructies')
                 itembtn3 = types.KeyboardButton('Herstart SmartWas')
                 markup.add(itembtn2, itembtn3, itembtn1)
-                bot.send_message(
-                    message.chat.id, "SmartWas is gestopt!", reply_markup=markup)
+                bot.send_message(message.chat.id, "SmartWas is gestopt!", reply_markup=markup)
                 sw_status = False
 
             else:
-                bot.send_message(
-                    message.chat.id, "SmartWas staat al uit", reply_markup=markup)
+                bot.send_message(message.chat.id, "SmartWas staat al uit", reply_markup=markup)
         elif "Herstart SmartWas" in message.text:
-            bot.send_message(
-                message.chat.id, "SmartWas device word opnieuw opgestart!", reply_markup=markup)
+            bot.send_message(message.chat.id, "SmartWas device word opnieuw opgestart!", reply_markup=markup)
 
         elif "Instructies" in message.text:
-            bot.send_message(
-                message.chat.id, "Instructies hier!", reply_markup=markup)
+            bot.send_message(message.chat.id, "Instructies hier!", reply_markup=markup)
 
         else:
-            bot.send_message(
-                message.chat.id, "Kies een optie:", reply_markup=markup)
+            bot.send_message(message.chat.id, "Kies een optie:", reply_markup=markup)
 
     else:
-        bot.send_message(
-            message.chat.id, "Haal nu je eigen SmartWas bij Windesheim! [User not connected to a SmarWas Device]")
+        bot.send_message(message.chat.id, "Haal nu je eigen SmartWas bij Windesheim! [User not connected to a SmarWas Device]")
 
 
 bot.polling()
